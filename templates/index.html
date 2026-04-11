@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddressMind AI | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
+</head>
+<body>
+    <div class="container narrow">
+        <h1>AddressMind AI</h1>
+        <p class="subtitle">Sign in as customer or delivery agent</p>
+
+        <div class="card left">
+            <label for="userName">Your name</label>
+            <input id="userName" type="text" placeholder="Enter your name" />
+            <div class="button-row">
+                <button id="customerLogin">Continue as Customer</button>
+                <button class="secondary" id="agentLogin">Continue as Delivery Agent</button>
+                <button class="secondary" id="opsLogin">Open Business Ops</button>
+            </div>
+            <p class="muted">Tip: Both dashboards can run in two different browser tabs for live tracking demo.</p>
+        </div>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('userName');
+
+        function gotoRole(path) {
+            const name = (nameInput.value || '').trim() || 'Guest';
+            localStorage.setItem('addressmind_user_name', name);
+            window.location.href = `${path}?name=${encodeURIComponent(name)}`;
+        }
+
+        document.getElementById('customerLogin').addEventListener('click', () => gotoRole('/customer'));
+        document.getElementById('agentLogin').addEventListener('click', () => gotoRole('/agent'));
+        document.getElementById('opsLogin').addEventListener('click', () => gotoRole('/ops'));
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/sw.js').catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddressMind AI | Business Ops</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h1>📊 Business Operations Dashboard</h1>
+                <p class="subtitle">Real-time delivery metrics, prediction accuracy, and job performance.</p>
+            </div>
+            <a class="link-btn" href="/">Back to Login</a>
+        </div>
+
+        <div class="grid three">
+            <div class="metric-card">
+                <div class="metric-value" id="totalJobs">0</div>
+                <div class="metric-label">Total Jobs</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value success" id="successRate">0%</div>
+                <div class="metric-label">Delivery Success</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="avgConfidence">0%</div>
+                <div class="metric-label">Avg Confidence</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value danger" id="failedDeliveries">0</div>
+                <div class="metric-label">Failed Deliveries</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="predictionAccuracy">0%</div>
+                <div class="metric-label">Prediction Accuracy</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="highRiskJobs">0</div>
+                <div class="metric-label">High Risk Jobs</div>
+            </div>
+        </div>
+
+        <div class="grid two">
+            <section class="card left">
+                <h2>Job Status Distribution</h2>
+                <canvas id="statusChart"></canvas>
+            </section>
+            <section class="card left">
+                <h2>Confidence Score Range</h2>
+                <canvas id="confidenceChart"></canvas>
+            </section>
+        </div>
+
+        <section class="card left">
+            <h2>Recent Prediction Logs (Last 30)</h2>
+            <div id="logsContainer" style="max-height: 400px; overflow-y: auto;">
+                <p class="muted">Loading prediction logs...</p>
+            </div>
+        </section>
+
+        <section class="card left">
+            <h2>Active & Recent Jobs</h2>
+            <div id="jobsContainer" style="max-height: 500px; overflow-y: auto;">
+                <p class="muted">Loading jobs...</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='ops.js') }}"></script>
+</body>
+</html>

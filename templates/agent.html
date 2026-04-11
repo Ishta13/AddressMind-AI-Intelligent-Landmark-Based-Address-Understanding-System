@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddressMind AI | Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h1>Delivery Agent Dashboard</h1>
+                <p class="subtitle">Receive jobs, update live location, and navigate to destination.</p>
+            </div>
+            <div class="button-row">
+                <a class="link-btn" href="/ops">Business Ops</a>
+                <a class="link-btn secondary" href="/">Back to Login</a>
+            </div>
+        </div>
+
+        <div class="grid two">
+            <section class="card left">
+                <h2>Job Intake</h2>
+                <label for="agentName">Agent name</label>
+                <input id="agentName" type="text" placeholder="Delivery agent name" />
+
+                <div class="button-row">
+                    <button id="loadJobsBtn">Load Open Jobs</button>
+                    <button id="startLiveBtn" class="secondary">Start Live Location</button>
+                    <button id="stopLiveBtn" class="secondary">Stop Live</button>
+                </div>
+
+                <label for="jobSelect">Select job</label>
+                <select id="jobSelect"></select>
+
+                <div class="button-row">
+                    <button id="assignBtn" class="small">Assign to Me</button>
+                    <button id="inTransitBtn" class="small">Mark In Transit</button>
+                    <button id="arrivedBtn" class="small">Mark Arrived</button>
+                    <button id="deliveredBtn" class="small success">Mark Delivered</button>
+                </div>
+
+                <p class="muted" id="agentStatusText">Live location is not started.</p>
+            </section>
+
+            <section class="card left">
+                <h2>Selected Job Info</h2>
+                <div id="jobInfo" class="result">
+                    <p><strong>Job ID:</strong> <span id="jobId">-</span></p>
+                    <p><strong>Customer:</strong> <span id="customerName">-</span></p>
+                    <p><strong>Address:</strong> <span id="jobAddress">-</span></p>
+                    <p><strong>Destination:</strong> <span id="jobLandmark">-</span></p>
+                    <p><strong>Nearest Metro / Transit:</strong> <span id="jobNearestMetro">-</span></p>
+                    <p><strong>Area Hint:</strong> <span id="jobAreaHint">-</span></p>
+                    <p><strong>Confidence:</strong> <span id="jobConfidence">-</span></p>
+                    <p><strong>Status:</strong> <span id="jobStatus">-</span></p>
+                    <p><strong>Route Distance:</strong> <span id="jobRouteDistance">-</span></p>
+                    <p><strong>Expected Arrival Time:</strong> <span id="jobEta">ETA unavailable</span></p>
+                    <p><strong>Suggestion:</strong> <span id="jobSuggestion">-</span></p>
+                </div>
+            </section>
+        </div>
+
+        <section class="card left">
+            <h2>Navigation Path</h2>
+            <p class="muted">Route auto-updates from your current location to destination.</p>
+            <div id="map"></div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='agent.js') }}"></script>
+</body>
+</html>

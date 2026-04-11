@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddressMind AI | Customer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div>
+                <h1>Customer Dashboard</h1>
+                <p class="subtitle">Submit address, create delivery job, and track your agent live.</p>
+            </div>
+            <div class="button-row">
+                <a class="link-btn" href="/ops">Business Ops</a>
+                <a class="link-btn secondary" href="/">Back to Login</a>
+            </div>
+        </div>
+
+        <div class="grid two">
+            <section class="card left">
+                <h2>Create Delivery</h2>
+                <label for="customerName">Customer name</label>
+                <input id="customerName" type="text" placeholder="Your name" />
+
+                <label for="addressInput">Address details</label>
+                <textarea id="addressInput" placeholder="Example: Ghar mandir ke peeche, metro ke samne"></textarea>
+
+                <div class="button-row">
+                    <button id="voiceBtn" class="secondary">🎤 Voice Input</button>
+                    <button id="geoBtn" class="secondary">Use My Current Location</button>
+                </div>
+
+                <div class="button-row">
+                    <button id="analyzeBtn">Analyze & Create Job</button>
+                    <button id="refreshTrackBtn" class="secondary">Refresh Tracking</button>
+                </div>
+
+                <p class="muted" id="customerLocationText">Customer location not attached yet.</p>
+                <p class="muted" id="jobIdText">No job created yet.</p>
+            </section>
+
+            <section class="card left">
+                <h2>Delivery Intelligence</h2>
+                <div class="metrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Confidence</span>
+                        <strong id="confidenceValue">-</strong>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Risk</span>
+                        <strong id="riskValue">-</strong>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Clarity</span>
+                        <strong id="clarityValue">-</strong>
+                    </div>
+                </div>
+
+                <div id="result" class="result hidden">
+                    <p><strong>Detected Landmark:</strong> <span id="landmark"></span></p>
+                    <p><strong>Nearest Metro / Transit:</strong> <span id="nearestMetro"></span></p>
+                    <p><strong>Area Hint:</strong> <span id="areaHint"></span></p>
+                    <p><strong>Matched Landmarks:</strong> <span id="matchedLandmarks"></span></p>
+                    <p><strong>Relation:</strong> <span id="relation"></span></p>
+                    <p><strong>Status:</strong> <span id="jobStatus"></span></p>
+                    <p><strong>Expected Arrival Time:</strong> <span id="etaValue">ETA unavailable (waiting for route)</span></p>
+                    <p><strong>Delivery Suggestion:</strong> <span id="deliverySuggestion"></span></p>
+                    <p><strong>Navigation Hint:</strong> <span id="instruction"></span></p>
+
+                    <div class="button-row">
+                        <button id="feedbackCorrect" class="small success" disabled>Prediction Correct</button>
+                        <button id="feedbackWrong" class="small danger" disabled>Prediction Incorrect</button>
+                    </div>
+                    <p id="feedbackStatus" class="muted"></p>
+                </div>
+            </section>
+        </div>
+
+        <section class="card left">
+            <h2>Live Tracking Map</h2>
+            <p class="muted">Blue marker = Customer, Green = Destination, Red = Delivery Agent</p>
+            <div id="map"></div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='customer.js') }}"></script>
+</body>
+</html>
