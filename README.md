@@ -84,4 +84,4 @@ Open: `http://127.0.0.1:5000`
 
 ## Hackathon Pitch Snapshot
 
-“AddressMind AI helps delivery teams decode real-world landmark addresses in local language style, assign jobs instantly, and track delivery progress in real time with confidence-aware fallback decisions.”
+“AddressMind AI helps delivery teams decode real-world landmark addresses in local language style, assign jobs instantly, and track delivery progress in real time with confidence-aware fallback decisions ."
